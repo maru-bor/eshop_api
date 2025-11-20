@@ -6,9 +6,22 @@ const product = {
     price : Number,
 }
 
+function renderProducts() {
+    productsList.innerHTML = '';
+    for (const [name, price] of products) {
+        const li = document.createElement('li');
+        li.innerHTML = `Produkt: ${name}, ${price}`;
+        productsList.appendChild(li);
+    }
+}
+
 fetch('/api/product')
 .then(res => res.json())
-.then(data => console.log(data))
+.then(data => {
+    console.log(data);
+    products.push(data)
+    renderProducts();
+})
 
 
 fetch('api/product', {
