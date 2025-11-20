@@ -1,6 +1,5 @@
-
 const productsList = document.getElementById('products');
-let products = [{}]
+let products = []
 const product = {
     name : String,
     price : Number,
@@ -8,9 +7,9 @@ const product = {
 
 function renderProducts() {
     productsList.innerHTML = '';
-    for (const [name, price] of products) {
+    for (const product of products) {
         const li = document.createElement('li');
-        li.innerHTML = `Produkt: ${name}, ${price}`;
+        li.innerHTML = `Produkt: ${product.name}, ${product.price}`;
         productsList.appendChild(li);
     }
 }
@@ -19,7 +18,7 @@ fetch('/api/product')
 .then(res => res.json())
 .then(data => {
     console.log(data);
-    products.push(data)
+    products = data;
     renderProducts();
 })
 
