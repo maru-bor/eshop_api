@@ -19,7 +19,7 @@ fetch('/api/product')
 .then(res => res.json())
 .then(data => {
     console.log(data);
-    Object.assign(products, data);
+    products.push(data)
     renderProducts();
 })
 
