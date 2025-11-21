@@ -25,6 +25,7 @@ public class ProductController {
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         Product newProduct = new Product();
         newProduct.setName(product.getName());
+        newProduct.setDescription(product.getDescription());
         newProduct.setPrice(product.getPrice());
         productRepository.save(newProduct);
         return ResponseEntity.ok(newProduct);
