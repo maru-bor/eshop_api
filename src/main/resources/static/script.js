@@ -1,6 +1,7 @@
 const productsList = document.getElementById('products');
 let products = []
 const button = document.getElementById('button')
+const cartButton = document.getElementById('cartBtn')
 const cartList = []
 
 getProducts()
@@ -38,6 +39,9 @@ function renderProducts() {
     }
 }
 
+cartButton.addEventListener("click", () => {
+    window.location.href = "cart.html"
+})
 
 button.addEventListener("click", () => {
     fetch('/api/product', {
@@ -59,5 +63,20 @@ button.addEventListener("click", () => {
         })
         .catch(err => console.error("Chyba:", err));
 });
+
+fetch('api/order', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+         firstName: 'Jan',
+         lastName: "Novak",
+         items: [
+          {
+            productId: 1,
+            quantity: 2
+          }
+         ]
+    })
+})
 
 
