@@ -1,6 +1,7 @@
 const productsList = document.getElementById('products');
 let products = []
 const button = document.getElementById('button')
+const cartList = []
 
 getProducts()
 
@@ -23,7 +24,15 @@ function renderProducts() {
         const p = document.createElement('p');
         p.textContent = `Produkt: ${product.name}, ${product.description}, ${product.price}`;
 
+        const buyBtn = document.createElement('button')
+        buyBtn.innerHTML = 'Koupit'
+        buyBtn.addEventListener("click", () => {
+            cartList.push(product)
+            console.log(cartList)
+        })
+
         div.appendChild(p)
+        div.appendChild(buyBtn)
 
         productsList.appendChild(div);
     }
