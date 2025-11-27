@@ -15,9 +15,15 @@ function getProducts(){
 function renderProducts() {
     productsList.innerHTML = '';
     for (const product of products) {
-        const li = document.createElement('li');
-        li.innerHTML = `Produkt: ${product.name}, ${product.description}, ${product.price}`;
-        productsList.appendChild(li);
+        const div = document.createElement('div')
+        div.className = 'productContainer'
+
+        const p = document.createElement('p');
+        p.textContent = `Produkt: ${product.name}, ${product.description}, ${product.price}`;
+
+        div.appendChild(p)
+
+        productsList.appendChild(div);
     }
 }
 
