@@ -2,6 +2,8 @@ const productsList = document.getElementById('products');
 let products = []
 const button = document.getElementById('button')
 
+getProducts()
+
 function getProducts(){
     fetch('/api/product')
         .then(res => res.json())
@@ -27,19 +29,26 @@ function renderProducts() {
     }
 }
 
+
 button.addEventListener("click", () => {
-    fetch('api/product', {
-        method : 'POST',
+    fetch('/api/product', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            name : 'Shoe',
+            name: 'Shoe',
             description: "Dobre boty.",
             price: 100
         })
     })
-        .then(res => res.status)
-        .then(status => console.log(status))
-    getProducts()
-})
+        .then(res => {
+            if (res.ok) {
+                console.log("Produkt přidán!");
+                getProducts();
+            } else {
+                console.error("Chyba při přidávání produktu:", res.status);
+            }
+        })
+        .catch(err => console.error("Chyba:", err));
+});
 
 
