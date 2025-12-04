@@ -1,19 +1,25 @@
+import type { Product } from "../types";
 
-export default function ProductCard() {
+interface ProductCardProps {
+    product: Product;
+    addToCart: (product: Product) => void;
+    removeFromCart: (product: Product) => void;
+}
+
+export default function ProductCard({ product, addToCart, removeFromCart }: ProductCardProps) {
      return(
             <>
                 <div id="product-card">
-                <h2>Product Name</h2>
+                <h2>{product.name}</h2>
                    <div id="product-info" >
-                      <p id="desc"> Product Description</p>
-                      <p id="price"> Price: 100 </p>
+                      <p id="desc"> {product.description}</p>
+                      <p id="price"> {product.price} </p>
 
-                      <button onClick={addToCart}>Add test product</button>
-                      <button onClick={removeFromCart}>Remove test product</button>
+                       <button onClick={() => addToCart(product)}>Add to cart</button>
+                       <button onClick={() => removeFromCart(product)}>Remove from cart</button>
                    </div>
                 </div>
 
-
             </>
-        );
+     );
 }

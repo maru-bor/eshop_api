@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import type { Product } from "../types";
+import ProductCard from "../components/ProductCard";
 
-export default function ProductsPage({addToCart}: { addToCart: (product: Product) => void; }) {
+export default function ProductsPage({addToCart, removeFromCart}: { addToCart: (product: Product) => void;     removeFromCart: (productId: number) => void;
+}) {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -29,12 +31,12 @@ export default function ProductsPage({addToCart}: { addToCart: (product: Product
         <div>
             <h1>Products</h1>
             {products.map(product => (
-                <div key={product.id}>
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <p>Price: {product.price}</p>
-                    <button onClick={() => addToCart(product)}>Add to cart</button>
-                </div>
+                <ProductCard
+                    key={product.id}
+                    product={product}
+                    addToCart={addToCart}
+                    removeFromCart={() => removeFromCart(product.id)}
+                />
             ))}
         </div>
     );

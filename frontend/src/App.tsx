@@ -52,6 +52,7 @@ function App() {
                     element={
                         <ProductsPage
                             addToCart={addToCart}
+                            removeFromCart={removeFromCart}
                         />
                     }
                 />
