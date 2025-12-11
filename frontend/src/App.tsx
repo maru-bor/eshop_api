@@ -32,6 +32,31 @@ function App() {
         });
     }
 
+    function lowerAmount(product: Product) {
+        setShoppingCart(prev => {
+                const existing = prev.find(item => item.product.id === product.id);
+
+                if (existing) {
+                    return prev.map(item =>
+                        item.product.id === product.id
+                            ? { ...item, quantity: item.quantity - 1 }
+                            : item
+                    );
+                }
+
+                return [
+                    ...prev,
+                    {
+                        id: prev.length + 1,
+                        quantity: item.quantity - 1,
+                        product: product
+                    }
+                ];
+            });
+
+
+    }
+
     function removeFromCart(productId: number) {
         setShoppingCart(prev =>
             prev.filter(item => item.product.id !== productId)
@@ -52,6 +77,7 @@ function App() {
                     element={
                         <ProductsPage
                             addToCart={addToCart}
+                            lowerAmount={lowerAmount}
                             removeFromCart={removeFromCart}
                         />
                     }

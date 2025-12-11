@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { Product } from "../types";
 import ProductCard from "../components/ProductCard";
 
-export default function ProductsPage({addToCart, removeFromCart}: { addToCart: (product: Product) => void;     removeFromCart: (productId: number) => void;
+export default function ProductsPage({addToCart, lowerAmount, removeFromCart}: { addToCart: (product: Product) => void; lowerAmount: (product: Product) => void;    removeFromCart: (productId: number) => void;
 }) {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
@@ -35,6 +35,7 @@ export default function ProductsPage({addToCart, removeFromCart}: { addToCart: (
                     key={product.id}
                     product={product}
                     addToCart={addToCart}
+                    lowerAmount={() => lowerAmount(product)}
                     removeFromCart={() => removeFromCart(product.id)}
                 />
             ))}
