@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import type { Product, CartItem } from "../types";
 import ProductCard from "../components/ProductCard";
+import '../styles/ProductsPage.css';
+
 
 interface ProductsPageProps {
     addToCart: (product: Product) => void;
@@ -36,7 +38,8 @@ export default function ProductsPage({ addToCart, setQuantity, removeFromCart, s
     return (
         <div>
             <h1>Products</h1>
-            {products.map(product => (
+            <div id="productsPage">
+              {products.map(product => (
                 <ProductCard
                     key={product.id}
                     product={product}
@@ -45,7 +48,9 @@ export default function ProductsPage({ addToCart, setQuantity, removeFromCart, s
                     removeFromCart={() => removeFromCart(product.id)}
                     quantityInCart={shoppingCart.find(item => item.product.id === product.id)?.quantity || 0}
                 />
-            ))}
+                ))}
+            </div>
+
         </div>
     );
 }
