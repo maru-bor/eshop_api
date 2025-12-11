@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
-import type { Product } from "../types";
+import type { Product, CartItem } from "../types";
 import ProductCard from "../components/ProductCard";
 
-export default function ProductsPage({addToCart, lowerAmount, removeFromCart}: { addToCart: (product: Product) => void; lowerAmount: (product: Product) => void;    removeFromCart: (productId: number) => void;
-}) {
+interface ProductsPageProps {
+    addToCart: (product: Product) => void;
+    setQuantity: (product: Product, amount: number) => void;
+    removeFromCart: (productId: number) => void;
+    shoppingCart: CartItem[];
+}
+
+export default function ProductsPage({ addToCart, setQuantity, removeFromCart, shoppingCart }: ProductsPageProps) {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -35,8 +41,9 @@ export default function ProductsPage({addToCart, lowerAmount, removeFromCart}: {
                     key={product.id}
                     product={product}
                     addToCart={addToCart}
-                    lowerAmount={() => lowerAmount(product)}
+                    setQuantity={setQuantity}
                     removeFromCart={() => removeFromCart(product.id)}
+                    quantityInCart={shoppingCart.find(item => item.product.id === product.id)?.quantity || 0}
                 />
             ))}
         </div>

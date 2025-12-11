@@ -12,7 +12,6 @@ function App() {
     function addToCart(product: Product) {
         setShoppingCart(prev => {
             const existing = prev.find(item => item.product.id === product.id);
-
             if (existing) {
                 return prev.map(item =>
                     item.product.id === product.id
@@ -20,49 +19,26 @@ function App() {
                         : item
                 );
             }
-
-            return [
-                ...prev,
-                {
-                    id: prev.length + 1,
-                    quantity: 1,
-                    product: product
-                }
-            ];
+            return [...prev, { id: prev.length + 1, product, quantity: 1 }];
         });
     }
 
-    function lowerAmount(product: Product) {
+    function setQuantity(product: Product, amount: number) {
         setShoppingCart(prev => {
-                const existing = prev.find(item => item.product.id === product.id);
-
-                if (existing) {
-                    return prev.map(item =>
-                        item.product.id === product.id
-                            ? { ...item, quantity: item.quantity - 1 }
-                            : item
-                    );
-                }
-
-                return [
-                    ...prev,
-                    {
-                        id: prev.length + 1,
-                        quantity: item.quantity - 1,
-                        product: product
-                    }
-                ];
-            });
-
-
+            if (amount <= 0) return prev.filter(item => item.product.id !== product.id);
+            const exists = prev.find(item => item.product.id === product.id);
+            if (exists) {
+                return prev.map(item =>
+                    item.product.id === product.id ? { ...item, quantity: amount } : item
+                );
+            }
+            return [...prev, { id: prev.length + 1, product, quantity: amount }];
+        });
     }
 
     function removeFromCart(productId: number) {
-        setShoppingCart(prev =>
-            prev.filter(item => item.product.id !== productId)
-        );
+        setShoppingCart(prev => prev.filter(item => item.product.id !== productId));
     }
-
 
     return (
         <Router>
@@ -77,8 +53,9 @@ function App() {
                     element={
                         <ProductsPage
                             addToCart={addToCart}
-                            lowerAmount={lowerAmount}
+                            setQuantity={setQuantity}
                             removeFromCart={removeFromCart}
+                            shoppingCart={shoppingCart}
                         />
                     }
                 />
