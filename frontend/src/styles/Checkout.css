@@ -1,0 +1,32 @@
+.checkout-card {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+}
+
+.checkout-card h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.checkout-input {
+    text-align: left;
+    margin: 0 auto 0.5rem auto;
+}
+
+.checkout-input label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.checkout-input input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

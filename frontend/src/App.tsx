@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
-import './App.css';
+import './styles/App.css';
 
 import ProductsPage from "./pages/ProductsPage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
