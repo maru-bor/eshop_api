@@ -20,7 +20,7 @@ export default function ProductCard({ product, addToCart, removeFromCart, lowerA
 
                        <div id="productQuantity">
                          <button onClick={() => addToCart(product)}>+</button>
-                         <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}/>
+                         <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))}/>
                          <button onClick={() => lowerAmount(product)}>-</button>
                        </div>
                        <button onClick={() => removeFromCart(product)}>Remove from cart</button>
