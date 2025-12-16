@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,12 @@ public class Order {
     private String firstName;
     private String lastName;
 
+    private String status;
+    private Long paymentSessionId;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<Item> items = new ArrayList<>();
 
-    private String status;
 
 }
