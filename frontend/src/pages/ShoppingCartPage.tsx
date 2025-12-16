@@ -1,9 +1,17 @@
-import type { CartItem, Order  } from "../types";
+import type {CartItem, Order, Product} from "../types";
 import {useEffect, useState} from "react";
 import CheckoutCard from "../components/CheckoutCard.tsx";
 import '../styles/OrderSummary.css';
+import ItemCard from "../components/ItemCard.tsx";
 
-export default function ShoppingCartPage({ shoppingCart, removeFromCart }: { shoppingCart: CartItem[]; removeFromCart: (productId: number) => void; }) {
+interface ShoppingCartProps {
+    shoppingCart: CartItem[];
+    removeFromCart: (productId: number) => void;
+    addToCart: (product: Product) => void;
+    setQuantity: (product: Product, amount: number) => void;
+}
+
+export default function ShoppingCartPage({ shoppingCart, removeFromCart, addToCart, setQuantity } : ShoppingCartProps) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [loading, setLoading] = useState(false);
@@ -85,10 +93,14 @@ export default function ShoppingCartPage({ shoppingCart, removeFromCart }: { sho
 
             {shoppingCart.map(item => (
                 <div key={item.id}>
-                    {item.product.name} - {item.quantity}
-                    <button onClick={() => removeFromCart(item.product.id)}>
-                        Remove
-                    </button>
+                    <ItemCard
+                        key={item.product.id}
+                        product={item.product}
+                        addToCart={addToCart}
+                        setQuantity={setQuantity}
+                        removeFromCart={() => removeFromCart(item.product.id)}
+                        quantityInCart={shoppingCart.find(item => item.product.id === item.product.id)?.quantity || 0}
+                    />
                 </div>
             ))}
 
@@ -123,9 +135,14 @@ export default function ShoppingCartPage({ shoppingCart, removeFromCart }: { sho
                     <h3>Items:</h3>
                     <ul>
                         {currentOrder.items.map(item => (
-                            <li key={item.id}>
-                                {item.product.name} - Quantity: {item.quantity} - Price: {item.product.price * item.quantity} CZK
-                            </li>
+                            <ItemCard
+                                key={item.product.id}
+                                product={item.product}
+                                addToCart={addToCart}
+                                setQuantity={setQuantity}
+                                removeFromCart={() => removeFromCart(item.product.id)}
+                                quantityInCart={shoppingCart.find(item => item.product.id === item.product.id)?.quantity || 0}
+                            />
                         ))}
                     </ul>
 

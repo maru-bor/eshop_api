@@ -1,8 +1,8 @@
 import type { Product } from "../types";
 import { useState, useEffect } from "react";
-import "../styles/ProductCard.css"
+import "../styles/ItemCard.css"
 
-interface ProductCardProps {
+interface ItemCardProps {
     product: Product;
     addToCart: (product: Product) => void;
     setQuantity: (product: Product, amount: number) => void;
@@ -10,7 +10,7 @@ interface ProductCardProps {
     quantityInCart?: number;
 }
 
-export default function ProductCard({ product, addToCart, removeFromCart, setQuantity, quantityInCart = 0 }: ProductCardProps) {
+export default function ItemCard({ product, addToCart, removeFromCart, setQuantity, quantityInCart = 0 }: ItemCardProps) {
     const [amount, setAmount] = useState(0);
 
     useEffect(() => {
@@ -32,12 +32,12 @@ export default function ProductCard({ product, addToCart, removeFromCart, setQua
     }
 
     return (
-        <div id="product-card">
+        <div id="item-card">
             <h2>{product.name}</h2>
             <div id="product-info">
                 <p id="description">{product.description}</p>
                 <p id="price">{product.price} CZK</p>
-
+                <p>{quantityInCart}</p>
                 {amount <= 0 ? (
                     <div id="addToCart">
                         <button onClick={() => handleAmountChange(1)}>

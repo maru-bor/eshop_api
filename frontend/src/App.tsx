@@ -65,6 +65,8 @@ function App() {
                         <ShoppingCartPage
                             shoppingCart={shoppingCart}
                             removeFromCart={removeFromCart}
+                            addToCart={addToCart}
+                            setQuantity={setQuantity}
                         />
                     }
                 />
