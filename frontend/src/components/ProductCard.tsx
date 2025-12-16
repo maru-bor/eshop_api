@@ -16,48 +16,48 @@ export default function ProductCard({ product, addToCart, removeFromCart, setQua
         setAmount(quantityInCart);
     }, [quantityInCart]);
 
-    useEffect(() => {
-        if (amount > 0) {
-            setQuantity(product, amount);
+    function handleAmountChange(newAmount: number) {
+        setAmount(newAmount);
+
+        if (amount == 0) {
+            addToCart(product)
+        }
+
+        if (newAmount > 0) {
+            setQuantity(product, newAmount);
         } else {
             removeFromCart(product);
         }
-    }, [amount]);
+    }
 
     return (
         <div id="product-card">
             <h2>{product.name}</h2>
             <div id="product-info">
                 <p id="description">{product.description}</p>
-                <p id="price">{product.price}</p>
+                <p id="price">{product.price} CZK</p>
 
                 {amount <= 0 ? (
                     <div id="addToCart">
-                        <button onClick={() => {
-                            setAmount(1);
-                            addToCart(product);
-                        }}>
+                        <button onClick={() => handleAmountChange(1)}>
                             Add to cart
                         </button>
                     </div>
                 ) : (
                     <div id="productQuantity">
-                        <button onClick={() => setAmount(prev => Math.max(0, prev - 1))}>-</button>
+                        <button onClick={() => handleAmountChange(amount - 1)}>-</button>
                         <input
                             type="number"
                             value={amount}
                             min={0}
-                            onChange={(e) => setAmount(Math.max(0, Number(e.target.value)))}
+                            onChange={(e) => handleAmountChange(Math.max(0, Number(e.target.value)))}
                         />
-                        <button onClick={() => setAmount(prev => prev + 1)}>+</button>
+                        <button onClick={() => handleAmountChange(amount + 1)}>+</button>
                     </div>
                 )}
 
                 {amount > 0 && (
-                    <button onClick={() => {
-                        setAmount(0);
-                        removeFromCart(product);
-                    }}>
+                    <button onClick={() => handleAmountChange(0)}>
                         Remove from cart
                     </button>
                 )}

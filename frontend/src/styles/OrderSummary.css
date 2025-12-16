@@ -1,0 +1,40 @@
+.order-summary {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-width: 500px;
+}
+
+.order-summary h2 {
+    margin-bottom: 10px;
+}
+
+.order-summary p {
+    margin: 5px 0;
+}
+
+.order-summary .status {
+    font-weight: bold;
+}
+
+.order-summary .status-paid {
+    color: green;
+}
+
+.order-summary .status-cancelled {
+    color: red;
+}
+
+.order-summary .status-waiting {
+    color: orange;
+}
+
+.order-summary ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.order-summary li {
+    margin-bottom: 5px;
+}

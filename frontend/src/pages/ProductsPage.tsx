@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import type { Product, CartItem } from "../types";
 import ProductCard from "../components/ProductCard";
 import '../styles/ProductsPage.css';
-
+import '../styles/ProductCard.css'
 
 interface ProductsPageProps {
     addToCart: (product: Product) => void;
@@ -50,7 +50,6 @@ export default function ProductsPage({ addToCart, setQuantity, removeFromCart, s
                 />
                 ))}
             </div>
-
         </div>
     );
 }

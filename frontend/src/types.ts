@@ -10,3 +10,18 @@ export type Product = {
     description: string,
     price: number
 }
+
+export interface Item {
+    id: number;
+    product: Product;
+    quantity: number;
+}
+
+export interface Order {
+    id: number;
+    firstName: string;
+    lastName: string;
+    status: string;
+    paymentSessionId: number | null;
+    items: Item[];
+}
