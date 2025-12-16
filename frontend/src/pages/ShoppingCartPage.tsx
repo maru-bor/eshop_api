@@ -100,6 +100,7 @@ export default function ShoppingCartPage({ shoppingCart, removeFromCart, addToCa
                         setQuantity={setQuantity}
                         removeFromCart={() => removeFromCart(item.product.id)}
                         quantityInCart={item.quantity}
+                        isInCart={true}
                     />
                 </div>
             ))}
@@ -132,16 +133,14 @@ export default function ShoppingCartPage({ shoppingCart, removeFromCart, addToCa
                         </span>
                     </p>
 
-                    <h3>Items:</h3>
+                    <p><strong>Items:</strong></p>
                     <ul>
                         {currentOrder.items.map(item => (
                             <ItemCard
                                 key={item.product.id}
                                 product={item.product}
-                                addToCart={addToCart}
-                                setQuantity={setQuantity}
-                                removeFromCart={() => removeFromCart(item.product.id)}
                                 quantityInCart={item.quantity}
+                                isInCart={false}
                             />
                         ))}
                     </ul>
