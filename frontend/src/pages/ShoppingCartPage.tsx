@@ -99,7 +99,7 @@ export default function ShoppingCartPage({ shoppingCart, removeFromCart, addToCa
                         addToCart={addToCart}
                         setQuantity={setQuantity}
                         removeFromCart={() => removeFromCart(item.product.id)}
-                        quantityInCart={shoppingCart.find(item => item.product.id === item.product.id)?.quantity || 0}
+                        quantityInCart={item.quantity}
                     />
                 </div>
             ))}
@@ -141,7 +141,7 @@ export default function ShoppingCartPage({ shoppingCart, removeFromCart, addToCa
                                 addToCart={addToCart}
                                 setQuantity={setQuantity}
                                 removeFromCart={() => removeFromCart(item.product.id)}
-                                quantityInCart={shoppingCart.find(item => item.product.id === item.product.id)?.quantity || 0}
+                                quantityInCart={item.quantity}
                             />
                         ))}
                     </ul>
