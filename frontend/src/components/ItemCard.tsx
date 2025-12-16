@@ -35,9 +35,7 @@ export default function ItemCard({ product, addToCart, removeFromCart, setQuanti
         <div id="item-card">
             <h2>{product.name}</h2>
             <div id="product-info">
-                <p id="description">{product.description}</p>
                 <p id="price">{product.price} CZK</p>
-                <p>{quantityInCart}</p>
                 {amount <= 0 ? (
                     <div id="addToCart">
                         <button onClick={() => handleAmountChange(1)}>
@@ -58,7 +56,7 @@ export default function ItemCard({ product, addToCart, removeFromCart, setQuanti
                 )}
 
                 {amount > 0 && (
-                    <button onClick={() => handleAmountChange(0)}>
+                    <button id="remove-btn" onClick={() => handleAmountChange(0)}>
                         Remove from cart
                     </button>
                 )}
