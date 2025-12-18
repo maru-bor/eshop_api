@@ -49,7 +49,7 @@ export default function ItemCard({ product, addToCart, removeFromCart, setQuanti
                     ) : (
                         <div id="productQuantity">
                             <button onClick={() => handleAmountChange(amount - 1)}>-</button>
-                            <input
+                            <input id="quantity-input"
                                 type="number"
                                 value={amount}
                                 min={0}
@@ -60,7 +60,7 @@ export default function ItemCard({ product, addToCart, removeFromCart, setQuanti
                     )}
 
                     {amount > 0 && (
-                        <button id="remove-btn" onClick={() => handleAmountChange(0)}>
+                        <button onClick={() => handleAmountChange(0)}>
                             Remove from cart
                         </button>
                     )}

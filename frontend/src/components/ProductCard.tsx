@@ -47,7 +47,7 @@ export default function ProductCard({ product, addToCart, removeFromCart, setQua
                 ) : (
                     <div id="productQuantity">
                         <button onClick={() => handleAmountChange(amount - 1)}>-</button>
-                        <input
+                        <input id="quantity-input"
                             type="number"
                             value={amount}
                             min={0}
