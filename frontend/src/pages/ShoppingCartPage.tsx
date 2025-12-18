@@ -8,7 +8,7 @@ interface ShoppingCartProps {
     shoppingCart: CartItem[];
     removeFromCart: (productId: number) => void;
     addToCart: (product: Product) => void;
-    setQuantity: (product: Product, amount: number) => void;
+    setQuantity: (product: Product, quantity: number) => void;
 }
 
 export default function ShoppingCartPage({ shoppingCart, removeFromCart, addToCart, setQuantity } : ShoppingCartProps) {

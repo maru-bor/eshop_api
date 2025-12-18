@@ -23,16 +23,16 @@ function App() {
         });
     }
 
-    function setQuantity(product: Product, amount: number) {
+    function setQuantity(product: Product, quantity: number) {
         setShoppingCart(prev => {
-            if (amount <= 0) return prev.filter(item => item.product.id !== product.id);
+            if (quantity <= 0) return prev.filter(item => item.product.id !== product.id);
             const exists = prev.find(item => item.product.id === product.id);
             if (exists) {
                 return prev.map(item =>
-                    item.product.id === product.id ? { ...item, quantity: amount } : item
+                    item.product.id === product.id ? { ...item, quantity: quantity } : item
                 );
             }
-            return [...prev, { id: prev.length + 1, product, quantity: amount }];
+            return [...prev, { id: prev.length + 1, product, quantity: quantity }];
         });
     }
 

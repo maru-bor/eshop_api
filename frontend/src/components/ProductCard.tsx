@@ -5,7 +5,7 @@ import "../styles/ProductCard.css"
 interface ProductCardProps {
     product: Product;
     addToCart: (product: Product) => void;
-    setQuantity: (product: Product, amount: number) => void;
+    setQuantity: (product: Product, quantity: number) => void;
     removeFromCart: (product: Product) => void;
     quantityInCart?: number;
 }

@@ -6,7 +6,7 @@ import '../styles/ProductCard.css'
 
 interface ProductsPageProps {
     addToCart: (product: Product) => void;
-    setQuantity: (product: Product, amount: number) => void;
+    setQuantity: (product: Product, quantity: number) => void;
     removeFromCart: (productId: number) => void;
     shoppingCart: CartItem[];
 }
